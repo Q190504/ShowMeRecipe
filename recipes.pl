@@ -1,4 +1,9 @@
-% Define a recipe with its name and ingredients
+% The predicate `suggest_recipe/2` takes a list of ingredients and suggests a recipe that can be made with those ingredients.
+suggest_recipe(Ingredients, Recipe) :-
+recipe(Recipe, Required),
+subset(Required, Ingredients)
+
+% The predicate `recipe/2` defines the recipes and their required ingredients.
 recipe('Salad Rau Trộn', ['rau', 'dưa leo', 'cà chua']).
 recipe('Trứng Chiên', ['trứng', 'hành']).
 recipe('Gà Rán', ['thịt gà', 'bột']).
