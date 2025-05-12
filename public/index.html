@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' type='text/css' media='screen' href='.\css\style.css'>
+    <title th:text="${movie.title}"></title>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">Show Me Recipe</h1>
+    </div>
+
+    <div class="main-section">
+        <div class="container">
+            <!-- Unselected Ingredients -->
+            <div class="panel" id="unselected">
+                <h2>Danh Sách Nguyên Liệu</h2>
+                <input type="text" class="search-input" placeholder="Tìm nguyên liệu..." data-target="unselected-cards">
+                <div class="card-grid" id="unselected-cards">
+                    <!-- Cards will appear here -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+                <button id="move-to-selected">→</button>
+                <button id="move-to-unselected">←</button>
+            </div>
+
+            <!-- Selected Ingredients -->
+            <div class="panel" id="selected">
+                <h2>Nguyên Liệu Đã Chọn</h2>
+                <input type="text" class="search-input" placeholder="Tìm nguyên liệu đã chọn..." data-target="selected-cards">
+                <div class="card-grid" id="selected-cards">
+                    <!-- Cards will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Find Recipes Button -->
+        <div class="find-recipes">
+            <button id="find-recipes-btn">Tìm</button>
+        </div>
+
+        <!-- Result Section (initially hidden) -->
+        <div class="results hidden" id="results">
+            <h2>Recipes Found</h2>
+            <div class="recipe-list" id="recipe-list">
+                <!-- Recipe results go here -->
+            </div>
+            <button class="back-btn" id="back-btn">Tìm Thêm</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

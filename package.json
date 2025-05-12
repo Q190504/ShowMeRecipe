@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Q190504/ShowMeRecipe#readme",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "csv-parser": "^3.2.0",
     "express": "^5.1.0"
   }
 }
