@@ -166,6 +166,7 @@ button:active {
   margin-top: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  align-items: center;
 }
 
 .dishes-card {
@@ -193,5 +194,3 @@ button:active {
   cursor: pointer;
   font-family: "TNH Xuong", sans-serif;
 }
-
-
