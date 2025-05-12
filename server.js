@@ -48,9 +48,6 @@ app.post('/suggest', (req, res) => {
 
             loadDishImages((imageMap) => {
                 const raw = stdout.trim();
-
-                console.log('raw:', raw);
-                
                 const results = [];
                 const dishPattern = /dish\(([^,\[\]]+)\s*,\s*\[([^\]]*)\]\)/g;
                 let match;
@@ -67,9 +64,6 @@ app.post('/suggest', (req, res) => {
                         dish_image_url: imageMap[name] || 'https://example.com/default.jpg'
                     });
                 }
-
-                console.log('Results:', results);
-
                 res.json(results);
             });
         }

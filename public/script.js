@@ -27,16 +27,16 @@ fetch('/ingredients')
 
 // Listen for typing in search inputs
 document.querySelectorAll('.search-input').forEach(input => {
-  input.addEventListener('input', () => {
-    const query = input.value.toLowerCase();
-    const targetId = input.dataset.target;
-    const cards = document.getElementById(targetId).querySelectorAll('.ingredients-card');
+    input.addEventListener('input', () => {
+        const query = input.value.toLowerCase();
+        const targetId = input.dataset.target;
+        const cards = document.getElementById(targetId).querySelectorAll('.ingredients-card');
 
-    cards.forEach(card => {
-      const name = card.querySelector('h3').textContent.toLowerCase();
-      card.style.display = name.includes(query) ? '' : 'none';
+        cards.forEach(card => {
+            const name = card.querySelector('h3').textContent.toLowerCase();
+            card.style.display = name.includes(query) ? '' : 'none';
+        });
     });
-  });
 });
 
 
@@ -74,12 +74,12 @@ moveToUnSelectedBtn.addEventListener('click', () => {
     });
 });
 
-
+const resultTitle = document.getElementById('result-title');
 // Handle clicks on the "Suggest Recipe" button
 const suggestRecipeBtn = document.getElementById('find-recipes-btn');
 suggestRecipeBtn.addEventListener('click', () => {
     const selectedCards = selectedContainer.querySelectorAll('.ingredients-card');
-    if(selectedCards.length === 0) {
+    if (selectedCards.length === 0) {
         alert('Please select at least one ingredient.');
         return;
     }
@@ -104,24 +104,32 @@ suggestRecipeBtn.addEventListener('click', () => {
                 return;
             }
 
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'dishes-card';
+            if (data.length === 0) {
+                resultTitle.textContent = 'Không tìm thấy công thức nào phù hợp với nguyên liệu đã chọn';
+            }
+            else {
+                resultTitle.textContent = 'Công thức phù hợp với nguyên liệu đã chọn:';
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'dishes-card';
 
-                const img = document.createElement('img');
-                img.src = item.dish_image_url || 'https://example.com/default.jpg';
-                img.alt = item.dish_name || 'Dish Image';
+                    const img = document.createElement('img');
+                    img.src = item.dish_image_url || 'https://example.com/default.jpg';
+                    img.alt = item.dish_name || 'Dish Image';
 
-                const title = document.createElement('h3');
-                title.textContent = item.dish_name || 'Unnamed Dish';
+                    const title = document.createElement('h3');
+                    title.textContent = item.dish_name || 'Unnamed Dish';
 
-                const ingredients = document.createElement('p');
-                ingredients.textContent = item.dish_ingredients.join(', ');
-                card.appendChild(img);
-                card.appendChild(title);
-                card.appendChild(ingredients);
-                container.appendChild(card);
-            });
+                    const ingredients = document.createElement('p');
+                    ingredients.textContent = item.dish_ingredients.join(', ');
+                    card.appendChild(img);
+                    card.appendChild(title);
+                    card.appendChild(ingredients);
+                    container.appendChild(card);
+                });
+            }
+
+
 
             // Hide selection layout & find button
             document.querySelector('.container').classList.add('hidden');
@@ -130,7 +138,7 @@ suggestRecipeBtn.addEventListener('click', () => {
             // Show result layout
             document.getElementById('results').classList.remove('hidden');
 
-           document.querySelectorAll('.search-input').forEach(input => input.value = '');
+            document.querySelectorAll('.search-input').forEach(input => input.value = '');
         })
         .catch(err => {
             console.error('Failed to load suggestions:', err);
