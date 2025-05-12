@@ -37,7 +37,7 @@ Show Me Recipe is a food recommendation website that helps users discover what m
 
 ## Tech Stack
 
-* Frontend: HTML, CSS
+* Frontend: HTML, CSS, JavaScript
 * Backend: Node.js
 * Logic Engine: Prolog
 
